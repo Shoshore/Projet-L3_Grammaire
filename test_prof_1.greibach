@@ -1,0 +1,4 @@
+S1 : a b
+S1 : a S0 b
+S0 : a b
+S0 : a S0 b

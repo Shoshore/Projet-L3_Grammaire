@@ -1,0 +1,249 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ALTERNATIVE
+
+Grammar
+
+Rule 0     S' -> grammaire
+Rule 1     grammaire -> regles
+Rule 2     regles -> regle NEWLINE regles
+Rule 3     regles -> regle
+Rule 4     regle -> NON_TERMINAL COLON productions
+Rule 5     productions -> production productions
+Rule 6     productions -> production
+Rule 7     production -> TERMINAL
+Rule 8     production -> NON_TERMINAL
+Rule 9     production -> EPSILON
+Rule 10    production -> TERMINAL production
+Rule 11    production -> NON_TERMINAL production
+
+Terminals, with rules where they appear
+
+ALTERNATIVE          : 
+COLON                : 4
+EPSILON              : 9
+NEWLINE              : 2
+NON_TERMINAL         : 4 8 11
+TERMINAL             : 7 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+grammaire            : 0
+production           : 5 6 10 11
+productions          : 4 5
+regle                : 2 3
+regles               : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . grammaire
+    (1) grammaire -> . regles
+    (2) regles -> . regle NEWLINE regles
+    (3) regles -> . regle
+    (4) regle -> . NON_TERMINAL COLON productions
+
+    NON_TERMINAL    shift and go to state 4
+
+    grammaire                      shift and go to state 1
+    regles                         shift and go to state 2
+    regle                          shift and go to state 3
+
+state 1
+
+    (0) S' -> grammaire .
+
+
+
+state 2
+
+    (1) grammaire -> regles .
+
+    $end            reduce using rule 1 (grammaire -> regles .)
+
+
+state 3
+
+    (2) regles -> regle . NEWLINE regles
+    (3) regles -> regle .
+
+    NEWLINE         shift and go to state 5
+    $end            reduce using rule 3 (regles -> regle .)
+
+
+state 4
+
+    (4) regle -> NON_TERMINAL . COLON productions
+
+    COLON           shift and go to state 6
+
+
+state 5
+
+    (2) regles -> regle NEWLINE . regles
+    (2) regles -> . regle NEWLINE regles
+    (3) regles -> . regle
+    (4) regle -> . NON_TERMINAL COLON productions
+
+    NON_TERMINAL    shift and go to state 4
+
+    regle                          shift and go to state 3
+    regles                         shift and go to state 7
+
+state 6
+
+    (4) regle -> NON_TERMINAL COLON . productions
+    (5) productions -> . production productions
+    (6) productions -> . production
+    (7) production -> . TERMINAL
+    (8) production -> . NON_TERMINAL
+    (9) production -> . EPSILON
+    (10) production -> . TERMINAL production
+    (11) production -> . NON_TERMINAL production
+
+    TERMINAL        shift and go to state 11
+    NON_TERMINAL    shift and go to state 8
+    EPSILON         shift and go to state 12
+
+    productions                    shift and go to state 9
+    production                     shift and go to state 10
+
+state 7
+
+    (2) regles -> regle NEWLINE regles .
+
+    $end            reduce using rule 2 (regles -> regle NEWLINE regles .)
+
+
+state 8
+
+    (8) production -> NON_TERMINAL .
+    (11) production -> NON_TERMINAL . production
+    (7) production -> . TERMINAL
+    (8) production -> . NON_TERMINAL
+    (9) production -> . EPSILON
+    (10) production -> . TERMINAL production
+    (11) production -> . NON_TERMINAL production
+
+  ! shift/reduce conflict for TERMINAL resolved as shift
+  ! shift/reduce conflict for NON_TERMINAL resolved as shift
+  ! shift/reduce conflict for EPSILON resolved as shift
+    NEWLINE         reduce using rule 8 (production -> NON_TERMINAL .)
+    $end            reduce using rule 8 (production -> NON_TERMINAL .)
+    TERMINAL        shift and go to state 11
+    NON_TERMINAL    shift and go to state 8
+    EPSILON         shift and go to state 12
+
+  ! TERMINAL        [ reduce using rule 8 (production -> NON_TERMINAL .) ]
+  ! NON_TERMINAL    [ reduce using rule 8 (production -> NON_TERMINAL .) ]
+  ! EPSILON         [ reduce using rule 8 (production -> NON_TERMINAL .) ]
+
+    production                     shift and go to state 13
+
+state 9
+
+    (4) regle -> NON_TERMINAL COLON productions .
+
+    NEWLINE         reduce using rule 4 (regle -> NON_TERMINAL COLON productions .)
+    $end            reduce using rule 4 (regle -> NON_TERMINAL COLON productions .)
+
+
+state 10
+
+    (5) productions -> production . productions
+    (6) productions -> production .
+    (5) productions -> . production productions
+    (6) productions -> . production
+    (7) production -> . TERMINAL
+    (8) production -> . NON_TERMINAL
+    (9) production -> . EPSILON
+    (10) production -> . TERMINAL production
+    (11) production -> . NON_TERMINAL production
+
+    NEWLINE         reduce using rule 6 (productions -> production .)
+    $end            reduce using rule 6 (productions -> production .)
+    TERMINAL        shift and go to state 11
+    NON_TERMINAL    shift and go to state 8
+    EPSILON         shift and go to state 12
+
+    production                     shift and go to state 10
+    productions                    shift and go to state 14
+
+state 11
+
+    (7) production -> TERMINAL .
+    (10) production -> TERMINAL . production
+    (7) production -> . TERMINAL
+    (8) production -> . NON_TERMINAL
+    (9) production -> . EPSILON
+    (10) production -> . TERMINAL production
+    (11) production -> . NON_TERMINAL production
+
+  ! shift/reduce conflict for TERMINAL resolved as shift
+  ! shift/reduce conflict for NON_TERMINAL resolved as shift
+  ! shift/reduce conflict for EPSILON resolved as shift
+    NEWLINE         reduce using rule 7 (production -> TERMINAL .)
+    $end            reduce using rule 7 (production -> TERMINAL .)
+    TERMINAL        shift and go to state 11
+    NON_TERMINAL    shift and go to state 8
+    EPSILON         shift and go to state 12
+
+  ! TERMINAL        [ reduce using rule 7 (production -> TERMINAL .) ]
+  ! NON_TERMINAL    [ reduce using rule 7 (production -> TERMINAL .) ]
+  ! EPSILON         [ reduce using rule 7 (production -> TERMINAL .) ]
+
+    production                     shift and go to state 15
+
+state 12
+
+    (9) production -> EPSILON .
+
+    TERMINAL        reduce using rule 9 (production -> EPSILON .)
+    NON_TERMINAL    reduce using rule 9 (production -> EPSILON .)
+    EPSILON         reduce using rule 9 (production -> EPSILON .)
+    NEWLINE         reduce using rule 9 (production -> EPSILON .)
+    $end            reduce using rule 9 (production -> EPSILON .)
+
+
+state 13
+
+    (11) production -> NON_TERMINAL production .
+
+    TERMINAL        reduce using rule 11 (production -> NON_TERMINAL production .)
+    NON_TERMINAL    reduce using rule 11 (production -> NON_TERMINAL production .)
+    EPSILON         reduce using rule 11 (production -> NON_TERMINAL production .)
+    NEWLINE         reduce using rule 11 (production -> NON_TERMINAL production .)
+    $end            reduce using rule 11 (production -> NON_TERMINAL production .)
+
+
+state 14
+
+    (5) productions -> production productions .
+
+    NEWLINE         reduce using rule 5 (productions -> production productions .)
+    $end            reduce using rule 5 (productions -> production productions .)
+
+
+state 15
+
+    (10) production -> TERMINAL production .
+
+    TERMINAL        reduce using rule 10 (production -> TERMINAL production .)
+    NON_TERMINAL    reduce using rule 10 (production -> TERMINAL production .)
+    EPSILON         reduce using rule 10 (production -> TERMINAL production .)
+    NEWLINE         reduce using rule 10 (production -> TERMINAL production .)
+    $end            reduce using rule 10 (production -> TERMINAL production .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for TERMINAL in state 8 resolved as shift
+WARNING: shift/reduce conflict for NON_TERMINAL in state 8 resolved as shift
+WARNING: shift/reduce conflict for EPSILON in state 8 resolved as shift
+WARNING: shift/reduce conflict for TERMINAL in state 11 resolved as shift
+WARNING: shift/reduce conflict for NON_TERMINAL in state 11 resolved as shift
+WARNING: shift/reduce conflict for EPSILON in state 11 resolved as shift
